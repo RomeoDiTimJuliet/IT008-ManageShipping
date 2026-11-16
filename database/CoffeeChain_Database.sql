@@ -56,14 +56,19 @@ CREATE TABLE dbo.Products
 (
     Id INT IDENTITY(1,1) NOT NULL
         CONSTRAINT PK_Products PRIMARY KEY,
+
     Name NVARCHAR(120) NOT NULL,
-        
+
+    CurrentPrice DECIMAL(18,2) NOT NULL,
+
     IsActive BIT NOT NULL
         CONSTRAINT DF_Products_IsActive DEFAULT (1),
+
     CreatedAt DATETIME2(0) NOT NULL
         CONSTRAINT DF_Products_CreatedAt DEFAULT (SYSDATETIME()),
 
-    CONSTRAINT CK_Products_CurrentPrice CHECK (CurrentPrice >= 0)
+    CONSTRAINT CK_Products_CurrentPrice
+        CHECK (CurrentPrice >= 0)
 );
 GO
 
